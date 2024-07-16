@@ -1,0 +1,21 @@
+ class Solution {
+    public boolean canJump(int[] nums) {
+        Boolean[] memo = new Boolean[nums.length+1];
+        return helper(nums,0,memo);
+    }
+    static boolean helper(int[] nums,int index,Boolean[] memo){
+        if(index>=nums.length-1) return true;
+        if(nums.length==1) return true;
+        if(nums[index]==0) return false;
+        if (memo[index]!=null) return memo[index];
+        
+        for(int i=1;i<=nums[index];i++){
+            if (helper(nums, index + i,memo)) {
+                 memo[index] = true;
+                return true;
+            }
+        }
+         memo[index] = false;
+        return false;
+    }
+}
